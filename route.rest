@@ -1,0 +1,11 @@
+GET http://localhost:3000/api/getAll
+
+###
+
+POST http://localhost:3000/api/post
+content-type: application/json
+
+{
+    "name": "damian",
+    "age": 99
+}
