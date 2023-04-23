@@ -1,4 +1,4 @@
-GET http://localhost:3000/api/getAll
+
 
 ###
 
@@ -9,3 +9,25 @@ content-type: application/json
     "name": "damian",
     "age": 99
 }
+
+###
+
+DELETE http://localhost:3000/api/deleteAll
+
+###
+
+POST http://localhost:3000/user-management/users
+content-type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "emailAdress": "john.doe@gmail.com",
+    "phoneNumber": 1234567
+}
+
+###
+
+GET http://localhost:3000/user-management/users/getAll
+
+###
