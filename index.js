@@ -23,7 +23,7 @@ database.once('connected', () => {
 
 
 app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
+    console.log('App listening on port ${port}')
 })
 
 
