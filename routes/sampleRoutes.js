@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router()
-const Model = require('../model/model');
+const Sample = require('../model/sample');
 module.exports = router;
 
 //Post Method
 router.post('/post', async (req, res) => {
-    const data = new Model({
+    const data = new Sample({
         name: req.body.name,
         age: req.body.age
     })
@@ -22,7 +22,7 @@ router.post('/post', async (req, res) => {
 //Get all Method
 router.get('/getAll', async (req, res) => {
     try {
-        const dataToGet = await Model.find()
+        const dataToGet = await Sample.find()
         res.status(200).json(dataToGet)
     } catch (error) {
         res.status(500).json({message: error.message})    
@@ -32,7 +32,7 @@ router.get('/getAll', async (req, res) => {
 //Get by ID Method
 router.get('/getOne/:id', async (req, res) => {
     try {
-        const dataToGet = await Model.findById(req.params.id)
+        const dataToGet = await Sample.findById(req.params.id)
         res.status(200).json(dataToGet)
     } catch (error) {
         res.status(500).json({message: error.message})    
@@ -46,7 +46,7 @@ router.patch('/update/:id', async (req, res) => {
         const updatedData = req.body;
         const options = { new: true };
 
-        const result = await Model.findByIdAndUpdate(
+        const result = await Sample.findByIdAndUpdate(
             id, updatedData, options
         )
 
@@ -61,7 +61,7 @@ router.patch('/update/:id', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const data = await Model.findByIdAndDelete(id)
+        const data = await Sample.findByIdAndDelete(id)
         res.send('Document with id:  ${data.name} has been deleted.')
     }
     catch (error) {
@@ -72,9 +72,9 @@ router.delete('/delete/:id', async (req, res) => {
 //Delete all
 router.delete('/deleteAll', async (req, res) =>{
     try {
-        const datas = await Model.find()
+        const datas = await Sample.find()
         datas.forEach(async (oneData) => {
-            const data = await Model.findByIdAndDelete(oneData._id)
+            const data = await Sample.findByIdAndDelete(oneData._id)
             
         })
         res.send('All documents have been deleted')

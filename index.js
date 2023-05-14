@@ -12,7 +12,6 @@ app.use(express.json());
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 
-
 // Database check
 database.on('error', (error) => {
     console.log(error)
@@ -28,10 +27,18 @@ app.listen(3000, () => {
 })
 
 
-// Simple Model Routes
-const modelRoutes = require('./routes/modelRoutes');
-app.use('/api', modelRoutes)
+// Simple Sample Routes
+const sampleRoutes = require('./routes/sampleRoutes');
+app.use('/api', sampleRoutes)
 
 // User Model Routes
 const userRoutes = require('./routes/userRoutes');
 app.use('/user-management/users', userRoutes)
+
+//Book Model Routes
+const bookRoutes = require('./routes/bookRoutes');
+app.use('/book-management/books', bookRoutes)
+
+//Admin Routes
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/admin/users', adminRoutes)

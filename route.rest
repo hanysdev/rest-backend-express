@@ -1,4 +1,4 @@
-
+GET http://localhost:3000/api/getAll
 
 ###
 
@@ -14,14 +14,14 @@ content-type: application/json
 
 DELETE http://localhost:3000/api/deleteAll
 
-###
+### Collection for users:
 
 POST http://localhost:3000/user-management/users
 content-type: application/json
 
 {
-    "firstName": "John",
-    "lastName": "Doe",
+    "username": "nowyadmin",
+    "password": "haslo",
     "emailAdress": "john.doe@gmail.com",
     "phoneNumber": 1234567
 }
@@ -29,5 +29,102 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/user-management/users/getAll
+
+### Authentification of the User
+
+POST http://localhost:3000/user-management/users/token
+Content-Type: : application/json
+
+{
+    "username": "Damian Schygulla",
+    "password": "newpassword",
+    "emailAdress": "damian@gmail.com"
+}
+
+
+
+### Operacje na kolekcji sample, ale tylko dla zalogowanych uzytkowników
+
+GET http://localhost:3000/book-management/books/getAll
+Authorization: Bearer eyJhbGJIzIpXVCJ9.eyJpYXQiOjE2ODM4NDU5NzZ9.0WVfXKSdwQ38AAcZ16Yw_H7m1ZNfLwkgdAFbI_JNHd0
+
+###
+
+POST http://localhost:3000/book-management/books/post
+content-type: application/json
+
+{
+    "title": "Biografia Damiana",
+    "author": "Damian Schygulla",
+    "publicationDate": 2009
+}
+
+###
+
+GET http://localhost:3000/book-management/books/getOneByTitle/Biografia Damiana
+
+###
+
+POST http://localhost:3000/user-management/users/register
+Content-Type: application/json
+
+{
+    "username": "Damian Schygulla",
+    "password": "firstpassword",
+    "emailAdress": "damian@gmail.com",
+    "phoneNumber": 123456789
+}
+
+### Password change
+
+PUT http://localhost:3000/user-management/users/change-password
+Content-Type: application/json
+
+{
+    "userId": "645d83d70d13a243c6697b7a",
+    "currentPassword": "firstpassword",
+    "newPassword": "newpassword",
+    "confirmPassword": "newpassword"
+}
+
+
+
+
+### Admin Token
+POST http://localhost:3000/admin/users/token
+
+Content-Type: : application/json
+{
+    "username": "Damian Schygulla",
+    "password": "newpassword",
+    "emailAdress": "damian@gmail.com",
+    "isAdmin": true
+}
+
+### Test Admin
+GET http://localhost:3000/admin/users/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODQwODE5NDV9.d2TogXinfYGX72NjaMJlt_3bIdwo_h-gXYDvfJ-Q2Rk
+
+### Admin tests new use creation, that is not admin at the beginning
+POST http://localhost:3000/admin/users/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODQwODEyODV9.DlQ8TzkAK9XQPJEBIs96bkumX_YAu9jL_N2Ger2dPN8
+Content-Type: application/json
+
+{
+    "username": "admin6",
+    "password": "admin6",
+    "emailAdress": "admin@admin.pl",
+    "phoneNumber": 123456789
+}
+
+### Change prmissions
+
+PUT http://localhost:3000/admin/users/646106fe1cddf028ef3d5fa3/permissions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODQwNzkwMjh9.YYcXvF5MEWKRFsekkUer8Cd7FxZXI7UgKaOG_4_jJt4
+
+
+### Get all for admin
+GET http://localhost:3000/admin/users/getAll
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODQwODEwMDZ9.aaYGdj2_UKD8UtTIpsjhM8JYJ17WHc3UvZuc1HYWUS8
 
 ###

@@ -11,4 +11,4 @@ const dataSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('samplemodel', dataSchema)
+module.exports = mongoose.model('sample', dataSchema)
