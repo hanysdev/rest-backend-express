@@ -22,7 +22,7 @@ router.post('/post', async (req, res) => {
 })
 
 //Get all Method
-router.get('/getAll', authenticateToken, async (req, res) => {
+router.get('/getAllBooks', authenticateToken, async (req, res) => {
     try {
         const dataToGet = await Book.find()
         res.status(200).json(dataToGet)
