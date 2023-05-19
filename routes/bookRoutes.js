@@ -7,9 +7,21 @@ module.exports = router;
 //Post Method
 router.post('/post', async (req, res) => {
     const data = new Book({
+        kind: req.body.kind,
+        full_sort_key: req.body.full_sort_key,
         title: req.body.title,
+        url: req.body.url,
+        cover_color: req.body.cover_color,
         author: req.body.author,
-        publicationDate: req.body.publicationDate
+        cover: req.body.cover,
+        epoch: req.body.epoch,
+        href: req.body.href,
+        has_audio: req.body.has_audio,
+        genre: req.body.genre,
+        simple_thumb: req.body.simple_thumb,
+        slug: req.body.slug,
+        cover_thumb: req.body.cover_thumb,
+        liked: req.body.liked
     })
 
     try {
