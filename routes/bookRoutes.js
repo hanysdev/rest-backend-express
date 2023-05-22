@@ -6,7 +6,7 @@ module.exports = router;
 
 //Post Method
 router.post('/post', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const data = new Book({
         kind: req.body.kind,
         full_sort_key: req.body.full_sort_key,
@@ -38,7 +38,7 @@ router.post('/post', async (req, res) => {
 router.get('/getAllBooks', authenticateToken, async (req, res) => {
     try {
         const dataToGet = await Book.find()
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).json(dataToGet)
     } catch (error) {
         res.status(500).json({message: error.message})    
@@ -47,7 +47,7 @@ router.get('/getAllBooks', authenticateToken, async (req, res) => {
 
 //Get by Title Mapping
 router.get('/getOneByTitle/:title', authenticateToken,  async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const dataToGet = await Book.find({"title": req.params.title})
         res.status(200).json(dataToGet)
@@ -58,7 +58,7 @@ router.get('/getOneByTitle/:title', authenticateToken,  async (req, res) => {
 
 //Get by Author Mapping
 router.get('/getOneByAuthor/:title', authenticateToken, async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const dataToGet = await Book.find({"author": req.params.author})
         res.status(200).json(dataToGet)
@@ -69,7 +69,7 @@ router.get('/getOneByAuthor/:title', authenticateToken, async (req, res) => {
 
 //Update by ID Method
 router.patch('/update/:id', authenticateToken, async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -88,7 +88,7 @@ router.patch('/update/:id', authenticateToken, async (req, res) => {
 
 //Delete by ID Method
 router.delete('/delete/:id', authenticateToken, async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const id = req.params.id;
         const data = await Book.findByIdAndDelete(id)
@@ -101,7 +101,7 @@ router.delete('/delete/:id', authenticateToken, async (req, res) => {
 
 //Delete by Title
 router.delete('/delete/:title', authenticateToken, async (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const datas = await Book.find({"title": req.params.title})
         datas.forEach(async (oneData) => {
@@ -116,7 +116,7 @@ router.delete('/delete/:title', authenticateToken, async (req,res) => {
 
 //Delete by Author
 router.delete('/delete/:author', authenticateToken, async (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const datas = await Book.find({"author": req.params.author})
         datas.forEach(async (oneData) => {
@@ -131,7 +131,7 @@ router.delete('/delete/:author', authenticateToken, async (req,res) => {
 
 //Delete all
 router.delete('/deleteAll', authenticateToken, async (req, res) =>{
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const datas = await Book.find()
         datas.forEach(async (oneData) => {
