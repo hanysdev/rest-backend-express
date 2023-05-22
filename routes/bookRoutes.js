@@ -37,6 +37,7 @@ router.post('/post', async (req, res) => {
 router.get('/getAllBooks', authenticateToken, async (req, res) => {
     try {
         const dataToGet = await Book.find()
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
         res.status(200).json(dataToGet)
     } catch (error) {
         res.status(500).json({message: error.message})    
