@@ -2,11 +2,20 @@ const express = require('express');
 const router = express.Router()
 const Book = require('../model/book');
 const authenticateToken = require('../routes/userRoutes');
+const cors = require('cors');
 module.exports = router;
+
+const corsOptions = {
+    origin: 'http://localhost:4200',
+    optionsSuccessStatus: 200
+  };
+  
+  // Dodaj middleware `cors` do routera
+  router.use(cors(corsOptions));
 
 //Post Method
 router.post('/post', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+
     const data = new Book({
         kind: req.body.kind,
         full_sort_key: req.body.full_sort_key,
@@ -22,10 +31,11 @@ router.post('/post', async (req, res) => {
         simple_thumb: req.body.simple_thumb,
         slug: req.body.slug,
         cover_thumb: req.body.cover_thumb,
-        liked: req.body.liked
+        liked: false
     })
 
     try {
+        
         const dataToSave = await data.save();
         res.status(201).json(dataToSave)
     }

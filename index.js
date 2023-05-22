@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors');
 
 const express = require('express')
 const mongoose = require('mongoose');
@@ -42,3 +43,9 @@ app.use('/book-management/books', bookRoutes)
 //Admin Routes
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/admin/users', adminRoutes)
+
+const corsOptions = {
+    origin: 'http://localhost:4200'
+  };
+  
+  app.use(cors(corsOptions));
