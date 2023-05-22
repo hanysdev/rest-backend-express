@@ -97,7 +97,7 @@ router.patch('/update/:id', authenticateToken, async (req, res) => {
 })
 
 //Delete by ID Method
-router.delete('/delete/:id', authenticateToken, async (req, res) => {
+router.delete('/deleteById/:id', authenticateToken, async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     try {
         const id = req.params.id;
