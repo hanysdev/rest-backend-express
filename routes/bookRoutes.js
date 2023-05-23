@@ -6,7 +6,7 @@ const cors = require('cors');
 module.exports = router;
 
 const corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: ['https://frontend-angular.herokuapp.com/', 'https://tsw-front-57m3.vercel.app', 'https://tsw-front.vercel.app/'],
     optionsSuccessStatus: 200
   };
   
