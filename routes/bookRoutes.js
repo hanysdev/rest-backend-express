@@ -102,7 +102,7 @@ router.delete('/deleteById/:id', authenticateToken, async (req, res) => {
     try {
         const id = req.params.id;
         const data = await Book.findByIdAndDelete(id)
-        res.send('Document with id:  ${data.name} has been deleted.')
+        res.send('Document has been deleted.')
     }
     catch (error) {
         res.status(400).json({ message: error.message })
